@@ -1,9 +1,12 @@
+from beatvision.logger import logger
+
+
 class App:
+
     def __init__(self):
-        print("=" * 50)
-        print("BeatVision")
-        print("Virtual Drum Kit using Computer Vision")
-        print("=" * 50)
+
+        logger.info("Starting BeatVision")
 
     def run(self):
-        print("Application started successfully!")
+
+        logger.success("Application started")
