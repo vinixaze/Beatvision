@@ -4,6 +4,7 @@ from beatvision.camera import CameraManager
 from beatvision.renderer import Renderer
 from beatvision.fps import FPSCounter
 from beatvision.logger import logger
+from beatvision.hand_tracker import HandTracker
 
 
 class App:
@@ -17,6 +18,8 @@ class App:
         self.renderer = Renderer()
 
         self.fps = FPSCounter()
+        
+        self.hand_tracker = HandTracker()
 
     def run(self):
 
@@ -24,8 +27,13 @@ class App:
 
             frame = self.camera.read()
 
+
             if frame is None:
                 break
+
+            result = self.hand_tracker.process(frame)
+
+            frame = self.hand_tracker.draw(frame, result)
 
             fps = self.fps.update()
 
