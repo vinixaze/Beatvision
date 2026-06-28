@@ -4,8 +4,11 @@ import time
 class FPSCounter:
 
     def __init__(self):
-        self.last = time.time()
+
+        self.last_time = time.time()
+
         self.frames = 0
+
         self.fps = 0
 
     def update(self):
@@ -14,12 +17,12 @@ class FPSCounter:
 
         now = time.time()
 
-        if now - self.last >= 1:
+        if now - self.last_time >= 1:
 
             self.fps = self.frames
 
             self.frames = 0
 
-            self.last = now
+            self.last_time = now
 
         return self.fps
